@@ -10,13 +10,5 @@
   "git-tag-message": "v%s",
   "increment": "patch",
   "jsonFiles": [
-    {
-      "file": "./gui/package.json",
-      "property": "version"
-    },
-    {
-      "file": "./gui/npm-shrinkwrap.json",
-      "property": "version"
-    }
   ]
 }
