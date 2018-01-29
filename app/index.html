@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Chrome Downloader GUI tools</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link rel="stylesheet" media="all" charset="utf-8" href="../node_modules/font-awesome/css/font-awesome.css" />
+      <link rel="stylesheet" media="all" charset="utf-8" href="../node_modules/bulma/css/bulma.css" />
+      <link rel="stylesheet" media="all" charset="utf-8" href="../node_modules/load-awesome/css/pacman.css" />
+      <link rel="stylesheet" media="all" charset="utf-8" href="../node_modules/load-awesome/css/square-jelly-box.css" />
+      <link rel="stylesheet" media="all" charset="utf-8" href="./styles/app.css" />
+    </head>
+
+    <body class="app" ng-app="ChromeDownloaderGuiApp" ng-controller="MainController as vm">
+      <div class="app__loading" ng-if="vm.shouldDisplayLoading()">
+        <div class="la-pacman la-3x">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div class="app__error" ng-if="vm.shouldDisplayGlobalError()">
+        <div class="la-square-jelly-box la-3x">
+          <div></div>
+          <div></div>
+        </div>
+        <br />
+        <div class="app__error__message">A major error occured</div>
+      </div>
+
+      <header class="app__header" ng-if="vm.shouldDisplayContent()">
+        <h1 class="title">Chrome Downloader GUI tools</h1>
+        <p class="subtitle">Find your expected Chrome version <strong>and install it on your machine</strong>!</p>
+      </header>
+      <nav class="app__nav tabs is-centered is-medium" ng-if="vm.shouldDisplayContent()">
+        <ul>
+          <li class="is-active">
+            <a>
+              <span class="icon"><i class="fa" ng-class="::vm.osTarget.icon"></i></span>
+              <span ng-bind="::vm.osTarget.label"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <main class="app__content" ng-if="vm.shouldDisplayContent()">
+        <table class="table app__content__versions">
+          <thead>
+            <tr>
+              <th class="app__content__versions__column--first">Version</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th class="app__content__versions__column--first">Version</th>
+              <th>Actions</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr ng-repeat="release in ::vm.releases track by release.version">
+                <td class="app__content__versions__column--first" ng-bind="release.version"></td>
+                <td>
+                  <button type="submit" class="button is-link"
+                          ng-click="vm.downloadRelease(release)"
+                          ng-if="!release.downloaded"
+                          ng-disabled="vm.isDownloadingInProgress()"
+                          ng-class="{ 'is-loading': vm.isVersionDownloadingInProgress(release.version) }">
+                    <span class="icon">
+                      <i class="fa fa-cloud-download"></i>
+                    </span>
+                    <span>Download it</span>
+                  </button>
+                  <button type="submit" class="button is-primary" ng-if="release.downloaded" ng-click="vm.run(release, false)">
+                    <span class="icon">
+                      <i class="fa fa-play-circle"></i>
+                    </span>
+                    <span>Run</span>
+                  </button>
+                  <button type="submit" class="button is-warning" ng-if="release.downloaded" ng-click="vm.run(release, true)">
+                    <span class="icon">
+                      <i class="fa fa-play-circle"></i>
+                    </span>
+                    <span>Run unsafe</span>
+                  </button>
+                  <button type="submit" class="button" ng-if="release.downloaded && !vm.isMac" ng-click="vm.createShortLink(release, false)">
+                    <span class="icon">
+                      <i class="fa fa-link"></i>
+                    </span>
+                    <span>Create a shortcut</span>
+                  </button>
+                  <button type="submit" class="button is-warning" ng-if="release.downloaded && !vm.isMac" ng-click="vm.createShortLink(release, true)">
+                    <span class="icon">
+                      <i class="fa fa-link"></i>
+                    </span>
+                    <span>Create an unsafe shortcut</span>
+                  </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+
+      <script type="text/javascript"></script>
+      <script>
+          // You can also require other files to run in this process
+          require('./app');
+      </script>
+    </body>
+</html>

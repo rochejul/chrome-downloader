@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+@import "./constants.css";
+
+html, body{
+  border: 0px solid transparent;
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: 1em;
+  margin: 0px 0px 0px 0px;
+  overflow: hidden;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__loading{
+  align-items: center;
+  background-color: var(--color-black);
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  z-index: 500;
+}
+
+.app__error {
+  align-items: center;
+  background-color: var(--color-red);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 500;
+}
+
+.app__error__message {
+  color: var(--color-white);
+  font-size: 2em;
+  margin-top: 1em;
+}
+
+.app__header {
+  flex: 0 0 auto;
+  margin: 2em 2em 2em 2em;
+}
+
+.app__nav {
+  flex: 0 0 auto;
+}
+
+.app__content {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.app__content__versions {
+  width: 100%;
+}
+
+.app__content__versions__column--first {
+  width: 25%;
+}
+
