@@ -12,7 +12,7 @@
     "build:app:win32": "npm run packager -- . chrome-downloader-gui --platform=win32 --arch=ia32 --icon=./app/app.ico --ignore=target/ --ignore=examples/ --prune=true --out=./target",
     "build:app:win64": "npm run packager -- . chrome-downloader-gui --platform=win32 --arch=x64 --icon=./app/app.ico --ignore=target/ --ignore=examples/ --prune=true --out=./target",
     "build:app:windows": "npm run build:app:win32 && npm run build:app:win64",
-    "build:shrinkwrap": "npm prune && npm shrinkwrap --only=prod",
+    "build:shrinkwrap": "npm prune && npm shrinkwrap",
     "bump:release": "npm run bumping -- --unpreid --git-create-branch",
     "bump:major": "npm run bumping -- --increment major",
     "bump:minor": "npm run bumping -- --increment minor",
