@@ -1,7 +1,10 @@
 'use strict';
 
+const { ipcRenderer } = require('electron');
+
 class MainController {
   constructor(
+    $timeout,
     DialogsService,
     OsTargetConstants,
     ReleasesService,
@@ -15,6 +18,7 @@ class MainController {
     this.osTarget = OsTargetConstants[SystemService.getCurrentSystem()];
     this.releases = [];
     this.versionToDownload = null;
+    this.showOnlyDownloadedRelease = false;
 
     this.ReleasesService = ReleasesService;
     this.DialogsService = DialogsService;
@@ -30,6 +34,12 @@ class MainController {
       .then(() => {
         this.loading = false;
       });
+
+    ipcRenderer.on('ipcEventProject--menu-view-display-only-downloaded-release', (event, state) => { // TODO should unbind on $destroy event
+      $timeout(() => {
+        this.showOnlyDownloadedRelease = state;
+      });
+    });
   }
 
   /**
@@ -140,6 +150,7 @@ class MainController {
 }
 
 MainController.$inject = [
+  '$timeout',
   'DialogsService',
   'OsTargetConstants',
   'ReleasesService',

@@ -61,7 +61,7 @@
             </tr>
           </tfoot>
           <tbody>
-            <tr ng-repeat="release in ::vm.releases track by release.version">
+            <tr ng-repeat="release in ::vm.releases track by release.version" ng-if="!vm.showOnlyDownloadedRelease || release.downloaded">
                 <td class="app__content__versions__column--first" ng-bind="release.version"></td>
                 <td>
                   <button type="submit" class="button is-link"
