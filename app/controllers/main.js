@@ -27,6 +27,10 @@ class MainController {
       .fetchReleases(this.osTarget.target)
       .then(releases => {
         this.releases = releases;
+
+        setTimeout(function () {
+          ipcRenderer.send('ipcEventProject--application-loaded');
+        }, 250);
       })
       .catch(() => {
         this.majorError = true;
