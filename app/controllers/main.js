@@ -5,6 +5,7 @@ const { ipcRenderer } = require('electron');
 class MainController {
   constructor(
     $timeout,
+    ConfigurationService,
     DialogsService,
     OsTargetConstants,
     ReleasesService,
@@ -18,7 +19,7 @@ class MainController {
     this.osTarget = OsTargetConstants[SystemService.getCurrentSystem()];
     this.releases = [];
     this.versionToDownload = null;
-    this.showOnlyDownloadedRelease = false;
+    this.showOnlyDownloadedRelease = ConfigurationService.isFilterDownloadedRelease();
 
     this.ReleasesService = ReleasesService;
     this.DialogsService = DialogsService;
@@ -155,6 +156,7 @@ class MainController {
 
 MainController.$inject = [
   '$timeout',
+  'ConfigurationService',
   'DialogsService',
   'OsTargetConstants',
   'ReleasesService',
