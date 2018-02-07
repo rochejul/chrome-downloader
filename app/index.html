@@ -32,9 +32,13 @@
         <div class="app__error__message">A major error occured</div>
       </div>
 
-      <header class="app__header" ng-if="vm.shouldDisplayContent()">
-        <h1 class="title">Chrome Downloader GUI tools</h1>
-        <p class="subtitle">Find your expected Chrome version <strong>and install it on your machine</strong>!</p>
+      <header class="app__header hero is-primary is-bold" ng-if="vm.shouldDisplayContent()">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Chrome Downloader GUI tools</h1>
+            <h2 class="subtitle">Find your expected Chrome version <strong>and install it on your machine</strong>!</h2>
+          </div>
+        </div>
       </header>
       <nav class="app__nav tabs is-centered is-medium" ng-if="vm.shouldDisplayContent()">
         <ul>
