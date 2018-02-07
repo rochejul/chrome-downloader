@@ -37,6 +37,7 @@
   "dependencies": {
     "angular": "1.6.8",
     "bulma": "0.6.1",
+    "electron-window-state": "4.1.1",
     "font-awesome": "4.7.0",
     "load-awesome": "1.1.0",
     "request": "2.83.0",
