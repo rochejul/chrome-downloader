@@ -66,37 +66,38 @@
           </tfoot>
           <tbody>
             <tr ng-repeat="release in ::vm.releases track by release.version" ng-if="!vm.showOnlyDownloadedRelease || release.downloaded">
-                <td class="app__content__versions__column--first" ng-bind="release.version"></td>
-                <td>
+                <td class="app__content__versions__column--first" ng-bind="::release.version"></td>
+                <td ng-if="!release.downloaded">
                   <button type="submit" class="button is-link"
                           ng-click="vm.downloadRelease(release)"
                           ng-if="!release.downloaded"
-                          ng-disabled="vm.isDownloadingInProgress()"
                           ng-class="{ 'is-loading': vm.isVersionDownloadingInProgress(release.version) }">
                     <span class="icon">
                       <i class="fa fa-cloud-download"></i>
                     </span>
                     <span>Download it</span>
                   </button>
-                  <button type="submit" class="button is-primary" ng-if="release.downloaded" ng-click="vm.run(release, false)">
+                </td>
+                <td ng-if="release.downloaded">
+                  <button type="submit" class="button is-primary" ng-click="vm.run(release, false)">
                     <span class="icon">
                       <i class="fa fa-play-circle"></i>
                     </span>
                     <span>Run</span>
                   </button>
-                  <button type="submit" class="button is-warning" ng-if="release.downloaded" ng-click="vm.run(release, true)">
+                  <button type="submit" class="button is-warning" ng-click="vm.run(release, true)">
                     <span class="icon">
                       <i class="fa fa-play-circle"></i>
                     </span>
                     <span>Run unsafe</span>
                   </button>
-                  <button type="submit" class="button" ng-if="release.downloaded && !vm.isMac" ng-click="vm.createShortLink(release, false)">
+                  <button type="submit" class="button" ng-if="!vm.isMac" ng-click="vm.createShortLink(release, false)">
                     <span class="icon">
                       <i class="fa fa-link"></i>
                     </span>
                     <span>Create a shortcut</span>
                   </button>
-                  <button type="submit" class="button is-warning" ng-if="release.downloaded && !vm.isMac" ng-click="vm.createShortLink(release, true)">
+                  <button type="submit" class="button is-warning" ng-if="!vm.isMac" ng-click="vm.createShortLink(release, true)">
                     <span class="icon">
                       <i class="fa fa-link"></i>
                     </span>
