@@ -108,7 +108,7 @@
           </tbody>
         </table>
       </main>
-      <nav class="app_filter" ng-if="vm.shouldDisplayContent()">
+      <nav class="app_filter" ng-if="vm.shouldDisplayContent() && vm.showFilterByVersions">
         <div class="field">
           <p class="control has-icons-left">
             <input class="input" type="text" placeholder="Filtering by version" ng-model="vm.model.filterByVersion" />

@@ -12,6 +12,13 @@ function service(
     static isFilterDownloadedRelease() {
       return ChromeDownloader.loadContext().filterDownloadedRelease;
     }
+
+    /**
+     * @returns {boolean}
+     */
+    static isFilterByVersions() {
+      return ChromeDownloader.loadContext().filterVersions;
+    }
   };
 }
 

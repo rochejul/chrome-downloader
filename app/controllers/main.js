@@ -20,6 +20,7 @@ class MainController {
     this.releases = [];
     this.versionToDownload = null;
     this.showOnlyDownloadedRelease = ConfigurationService.isFilterDownloadedRelease();
+    this.showFilterByVersions = ConfigurationService.isFilterByVersions();
     this.model = {
       'filterByVersion': ''
     };
@@ -46,6 +47,13 @@ class MainController {
     ipcRenderer.on('ipcEventProject--menu-view-display-only-downloaded-release', (event, state) => { // TODO should unbind on $destroy event
       $timeout(() => {
         this.showOnlyDownloadedRelease = state;
+      });
+    });
+
+    ipcRenderer.on('ipcEventProject--menu-view-display-filter-versions', (event, state) => { // TODO should unbind on $destroy event
+      $timeout(() => {
+        this.model.filterByVersion = '';
+        this.showFilterByVersions = state;
       });
     });
   }
