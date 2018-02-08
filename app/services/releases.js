@@ -12,6 +12,7 @@ const endpoint = 'https://chrome-downloader.herokuapp.com';
  * @property {string} osTarget
  * @property {string} version
  * @property {string} basePosition
+ * @property {string} downloadableEndpoint
  * @property {boolean} downloaded
  */
 
@@ -55,7 +56,7 @@ function service(
     static downloadRelease(release) {
       return $q((resolve, reject) => {
         ChromeDownloader
-          .downloadVersion(release.osTarget, release.version, release.basePosition)
+          .downloadVersion(release.version, release.downloadableEndpoint)
           .then(resolve)
           .catch(reject);
       });

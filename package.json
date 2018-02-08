@@ -1,6 +1,6 @@
 {
   "name": "chrome-downloader-gui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GUI tool for the Chrome Downloader",
   "main": "./lib/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "build:app:win32": "npm run packager -- . chrome-downloader-gui --platform=win32 --arch=ia32 --icon=./app/app.ico --ignore=target/ --ignore=examples/ --prune=true --out=./target",
     "build:app:win64": "npm run packager -- . chrome-downloader-gui --platform=win32 --arch=x64 --icon=./app/app.ico --ignore=target/ --ignore=examples/ --prune=true --out=./target",
     "build:app:windows": "npm run build:app:win32 && npm run build:app:win64",
-    "build:shrinkwrap": "npm prune && npm shrinkwrap --only=prod",
+    "build:shrinkwrap": "npm prune && npm shrinkwrap",
     "bump:release": "npm run bumping -- --unpreid --git-create-branch",
     "bump:major": "npm run bumping -- --increment major",
     "bump:minor": "npm run bumping -- --increment minor",
@@ -37,6 +37,7 @@
   "dependencies": {
     "angular": "1.6.8",
     "bulma": "0.6.1",
+    "electron-window-state": "4.1.1",
     "font-awesome": "4.7.0",
     "load-awesome": "1.1.0",
     "request": "2.83.0",

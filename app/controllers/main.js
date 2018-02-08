@@ -1,7 +1,11 @@
 'use strict';
 
+const { ipcRenderer } = require('electron');
+
 class MainController {
   constructor(
+    $timeout,
+    ConfigurationService,
     DialogsService,
     OsTargetConstants,
     ReleasesService,
@@ -15,6 +19,11 @@ class MainController {
     this.osTarget = OsTargetConstants[SystemService.getCurrentSystem()];
     this.releases = [];
     this.versionToDownload = null;
+    this.showOnlyDownloadedRelease = ConfigurationService.isFilterDownloadedRelease();
+    this.showFilterByVersions = ConfigurationService.isFilterByVersions();
+    this.model = {
+      'filterByVersion': ''
+    };
 
     this.ReleasesService = ReleasesService;
     this.DialogsService = DialogsService;
@@ -23,6 +32,10 @@ class MainController {
       .fetchReleases(this.osTarget.target)
       .then(releases => {
         this.releases = releases;
+
+        setTimeout(function () {
+          ipcRenderer.send('ipcEventProject--application-loaded');
+        }, 250);
       })
       .catch(() => {
         this.majorError = true;
@@ -30,6 +43,19 @@ class MainController {
       .then(() => {
         this.loading = false;
       });
+
+    ipcRenderer.on('ipcEventProject--menu-view-display-only-downloaded-release', (event, state) => { // TODO should unbind on $destroy event
+      $timeout(() => {
+        this.showOnlyDownloadedRelease = state;
+      });
+    });
+
+    ipcRenderer.on('ipcEventProject--menu-view-display-filter-versions', (event, state) => { // TODO should unbind on $destroy event
+      $timeout(() => {
+        this.model.filterByVersion = '';
+        this.showFilterByVersions = state;
+      });
+    });
   }
 
   /**
@@ -140,6 +166,8 @@ class MainController {
 }
 
 MainController.$inject = [
+  '$timeout',
+  'ConfigurationService',
   'DialogsService',
   'OsTargetConstants',
   'ReleasesService',

@@ -2,15 +2,36 @@
 
 @import "./constants.css";
 
-html, body{
+html, body {
   border: 0px solid transparent;
   height: 100%;
   font-family: var(--font-family);
-  font-size: 1em;
+  font-size: 1rem;
   margin: 0px 0px 0px 0px;
   overflow: hidden;
   padding: 0px 0px 0px 0px;
   width: 100%;
+}
+
+::-webkit-scrollbar {
+  height: 9px;
+  width: 9px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(var(--color-black-rgb), 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-black-rgb), 0.8);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(var(--color-black-rgb), 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(var(--color-black-rgb), 0.1);
 }
 
 .app {
@@ -39,17 +60,18 @@ html, body{
 
 .app__error__message {
   color: var(--color-white);
-  font-size: 2em;
-  margin-top: 1em;
+  font-size: 2rem;
+  margin-top: 1rem;
 }
 
 .app__header {
   flex: 0 0 auto;
-  margin: 2em 2em 2em 2em;
+  margin: 1.5rem 1.5rem 1.5rem 1.5rem;
 }
 
 .app__nav {
   flex: 0 0 auto;
+  margin-bottom: 0px !important;
 }
 
 .app__content {
@@ -65,3 +87,52 @@ html, body{
   width: 25%;
 }
 
+.app_filter {
+  background-color: var(--color-aqua);
+  flex: 0 0 3rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+@media all and (max-width: 850px) {
+  html, body {
+    font-size: 0.9rem;
+  }
+
+  .app__content__versions__column--first {
+    width: 20%;
+  }
+}
+
+@media all and (max-width: 725px) {
+  .app__content__versions__column--first {
+    width: 100px;
+  }
+
+  .button {
+    font-size: 0.9rem;
+  }
+}
+
+@media all and (max-width: 625px) {
+  html, body {
+    font-size: 0.8rem;
+  }
+
+  .button {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    width: 150px;
+  }
+}
+
+@media all and (max-height: 750px) {
+  .app__header {
+    margin: 1rem 1rem 1rem 1rem;
+  }
+}
+
+@media all and (max-height: 550px) {
+  .app__header {
+    margin: 0.5rem 1rem 0.5rem 1rem;
+  }
+}
