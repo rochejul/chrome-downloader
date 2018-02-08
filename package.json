@@ -1,6 +1,6 @@
 {
   "name": "chrome-downloader-gui",
-  "version": "1.0.4-beta.3",
+  "version": "1.0.4",
   "description": "GUI tool for the Chrome Downloader",
   "main": "./lib/index.js",
   "scripts": {
