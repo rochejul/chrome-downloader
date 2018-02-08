@@ -20,6 +20,9 @@ class MainController {
     this.releases = [];
     this.versionToDownload = null;
     this.showOnlyDownloadedRelease = ConfigurationService.isFilterDownloadedRelease();
+    this.model = {
+      'filterByVersion': ''
+    };
 
     this.ReleasesService = ReleasesService;
     this.DialogsService = DialogsService;

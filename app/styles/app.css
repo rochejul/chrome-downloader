@@ -87,6 +87,12 @@ html, body {
   width: 25%;
 }
 
+.app_filter {
+  background-color: var(--color-aqua);
+  flex: 0 0 3rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
 @media all and (max-width: 850px) {
   html, body {
     font-size: 0.9rem;

@@ -65,7 +65,7 @@
             </tr>
           </tfoot>
           <tbody>
-            <tr ng-repeat="release in ::vm.releases track by release.version" ng-if="!vm.showOnlyDownloadedRelease || release.downloaded">
+            <tr ng-repeat="release in vm.releases | filter:{ 'version': vm.model.filterByVersion } track by release.version" ng-if="!vm.showOnlyDownloadedRelease || release.downloaded">
                 <td class="app__content__versions__column--first" ng-bind="::release.version"></td>
                 <td ng-if="!release.downloaded">
                   <button type="submit" class="button is-link"
@@ -108,6 +108,16 @@
           </tbody>
         </table>
       </main>
+      <nav class="app_filter" ng-if="vm.shouldDisplayContent()">
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="Filtering by version" ng-model="vm.model.filterByVersion" />
+            <span class="icon is-small is-left">
+              <i class="fa fa-filter"></i>
+            </span>
+          </p>
+        </div>
+      </nav>
 
       <script type="text/javascript"></script>
       <script>
