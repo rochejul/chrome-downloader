@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+:root {
+    --color-aqua: #00d1b2;
+    --color-black-rgb: 0, 0, 0;
+    --color-black: #333333;
+    --color-dark-blue: #273547;
+    --color-light-blue: #a4bbd7;
+    --color-dark-gray: #2a333c;
+    --color-light-gray: #d3d3d3;
+    --color-red: #C12127;
+    --color-white: #FFFFFF;
+    --color--dark-orange: #F06500;
+    --color-orange: #FAB231;
+    --color-yellow: #FEE933;
+
+    --font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+}
